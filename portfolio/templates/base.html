@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static '/css/style.css' %}" />
+    <title>Portfolio</title>
+  </head>
+  <body class="body-content">
+    <header class="header-content">
+      <article class="header-logo">
+        <h1 class="header-logo-title">
+          <a href="#">dandr94</a>
+        </h1>
+        <div class="vertical-line"></div>
+      </article>
+      <nav class="header-nav">
+        <ul class="header-nav-items">
+          <li class="header-nav-item">
+            <a href="#">Projects</a>
+            <a href="#">Certificates</a>
+            <a href="#">About me</a>
+            <a href="#">Contacts</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main class="main-content">
+        {% block page_content %}
+
+        {% endblock %}
+    </main>
+   <footer class="footer-content">
+      <ul class="footer-items">
+        <li class="footer-item">
+          <p class="footer-item-text">
+            &copy; dandr94 | You can check site's GitHub <a href="https://github.com/dandr94/portfolio-site">HERE</a>
+          </p>
+        </li>
+      </ul>
+    </footer>
+    <script src="{% static 'js/main.js' %}"></script>
+  </body>
+</html>
