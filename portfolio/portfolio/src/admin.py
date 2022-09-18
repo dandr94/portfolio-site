@@ -1,3 +1,8 @@
 from django.contrib import admin
 
-# Register your models here.
+from portfolio.src.models import Contacts
+
+
+@admin.register(Contacts)
+class ListOfContacts(admin.ModelAdmin):
+    list_display = ['name', 'value']

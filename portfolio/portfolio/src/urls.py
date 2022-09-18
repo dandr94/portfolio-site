@@ -1,8 +1,8 @@
 from django.urls import path
 
-from portfolio.src.views import Home, Contacts
+from portfolio.src.views import Home, ShowContacts
 
 urlpatterns = [
     path('', Home.as_view(), name='index'),
-    path('contacts/', Contacts.as_view(), name='contacts')
+    path('contacts/', ShowContacts.as_view(), name='contacts')
 ]
