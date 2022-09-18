@@ -2,6 +2,7 @@
 {% block title %} Contacts {% endblock %}
 {% block page_content %}
     <article class="contacts">
+        {% if contacts %}
         <h2 class="contacts-title">You can find me at:</h2>
         <ul class="contacts-items">
             {% for contact in contacts %}
@@ -14,5 +15,8 @@
                 </li>
             {% endfor %}
         </ul>
+        {% else %}
+         <h2 class="contacts-title">Contacts list is empty!</h2>
+        {% endif %}
     </article>
 {% endblock %}
