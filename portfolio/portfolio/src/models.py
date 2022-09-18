@@ -1,5 +1,7 @@
 from django.db import models
 
+from portfolio.src.validators import MaxFileSizeInMbValidator
+
 
 class Contacts(models.Model):
     NAME_MAX_LEN = 40
@@ -28,6 +30,8 @@ class Contacts(models.Model):
 class About(models.Model):
     FIRST_NAME_MAX_LEN = 60
     JOB_MAX_LEN = 40
+    MAX_FILE_SIZE_IN_MB = 5
+    IMG_FILE_UPLOAD_DIR = 'imgs/profile_img'
     HOBBIES_MAX_LEN = 100
     LIKES_MAX_LEN = 100
 
@@ -41,6 +45,15 @@ class About(models.Model):
         max_length=JOB_MAX_LEN,
         null=False,
         blank=False
+    )
+
+    img = models.ImageField(
+        upload_to=IMG_FILE_UPLOAD_DIR,
+        null=True,
+        blank=True,
+        validators=[
+            MaxFileSizeInMbValidator(MAX_FILE_SIZE_IN_MB)
+        ]
     )
 
     summary = models.TextField(
