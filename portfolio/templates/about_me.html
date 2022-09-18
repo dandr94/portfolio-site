@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} About me {% endblock %}
+{% block page_content %}
+    <article class="about-me">
+        {% if about %}
+            <article class="about-me-img">
+                {% if about.img %}
+                    <img src="/static/{{ about.img }}" alt="profile-picture"/>
+                {% else %}
+                    <img src="{% static 'imgs/default-user-img.png' %}" alt="profile-picture"/>
+                {% endif %}
+            </article>
+            <article class="about-me-content">
+                <h4 class="about-me-content-title">{{ about.full_name }}</h4>
+                <p class="about-me-content-job">{{ about.job }}</p>
+                <p class="about-me-content-text">
+                    {{ about.summary }}
+                </p>
+                <p class="about-me-hobbies">Hobbies: <span>{{ about.hobbies }}</span></p>
+                <p class="about-me-interested">Likes: <span>{{ about.likes }}</span>
+                </p>
+            </article>
+            </article>
+        {% else %}
+            <h2 class="contacts-title">About section is empty!</h2>
+        {% endif %}
+{% endblock %}
