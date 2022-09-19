@@ -3,7 +3,7 @@ from django.db import models
 from portfolio.src.validators import MaxFileSizeInMbValidator
 
 
-class Contacts(models.Model):
+class Contact(models.Model):
     NAME_MAX_LEN = 40
     ICON_MAX_LEN = 60
     VALUE_MAX_LEN = 40

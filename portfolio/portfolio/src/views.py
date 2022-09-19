@@ -1,7 +1,7 @@
 from django.core.exceptions import ObjectDoesNotExist
 from django.views.generic import TemplateView, ListView, DetailView
 
-from portfolio.src.models import Contacts, About
+from portfolio.src.models import Contact, About
 
 
 class Home(TemplateView):
@@ -9,12 +9,12 @@ class Home(TemplateView):
 
 
 class ShowContacts(ListView):
-    model = Contacts
+    model = Contact
     template_name = 'contacts.html'
     context_object_name = 'contacts'
 
     def get_queryset(self):
-        queryset = Contacts.objects.all()
+        queryset = Contact.objects.all()
         return queryset
 
 

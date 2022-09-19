@@ -1,9 +1,9 @@
 from django.contrib import admin
 
-from portfolio.src.models import Contacts, About, Certificate
+from portfolio.src.models import Contact, About, Certificate
 
 
-@admin.register(Contacts)
+@admin.register(Contact)
 class ListOfContacts(admin.ModelAdmin):
     list_display = ['name', 'value']
 
