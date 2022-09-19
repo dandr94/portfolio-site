@@ -71,3 +71,24 @@ class About(models.Model):
         max_length=LIKES_MAX_LEN,
         blank=True,
         null=True)
+
+
+class Certificate(models.Model):
+    NAME_MAX_LEN = 40
+
+    name = models.CharField(
+        max_length=NAME_MAX_LEN,
+        blank=False,
+        null=False
+    )
+
+    date = models.DateField(
+        blank=False,
+        null=False
+    )
+
+    validity = models.URLField(
+        blank=True,
+        null=True
+    )
+
