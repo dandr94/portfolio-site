@@ -1,7 +1,7 @@
 from django.core.exceptions import ObjectDoesNotExist
 from django.views.generic import TemplateView, ListView, DetailView
 
-from portfolio.src.models import Contact, About, Certificate
+from portfolio.src.models import Contact, About, Certificate, Project
 
 
 class Home(TemplateView):
@@ -41,3 +41,18 @@ class CertificateDetails(ListView):
         queryset = Certificate.objects.all()
         return queryset
 
+
+class ShowProjects(ListView):
+    model = Project
+    template_name = 'projects.html'
+    context_object_name = 'projects'
+
+    def get_queryset(self):
+        queryset = Project.objects.all()
+        return queryset
+
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['counter'] = 0
+        return context

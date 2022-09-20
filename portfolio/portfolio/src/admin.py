@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from portfolio.src.models import Contact, About, Certificate
+from portfolio.src.models import Contact, About, Certificate, Project
 
 
 @admin.register(Contact)
@@ -16,3 +16,8 @@ class AboutInformation(admin.ModelAdmin):
 @admin.register(Certificate)
 class CertificateInformation(admin.ModelAdmin):
     list_display = ['name', 'date']
+
+
+@admin.register(Project)
+class ProjectInformation(admin.ModelAdmin):
+    list_display = ['name', 'github_link']
