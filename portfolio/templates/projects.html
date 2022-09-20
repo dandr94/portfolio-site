@@ -1,42 +1,35 @@
 {% extends 'base.html' %}
 {% block title %} Projects {% endblock %}
 {% block page_content %}
-    <article class="card-content">
-        <ul class="cards">
-            {% for project in projects %}
-                <li class="card">
-                    <figure class="shape-box shape-box_half">
-                        {% if not project.cover %}
-                            <img
-                                    src="https://images.unsplash.com/photo-1534670007418-fbb7f6cf32c3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80"
-                                    alt=""
-                            />
-                        {% else %}
-                            <img
-                                    src="/static/{{ project.cover }}"
-                                    alt=""
-                            />
-                        {% endif %}
-                        <div class="brk-abs-overlay z-index-0 bg-black opacity-60"></div>
-                        <figcaption>
-                            <div class="show-cont">
-                                <h3 class="card-no">{{ forloop.counter }}</h3>
-                                <h4 class="card-title">{{ project.name }}</h4>
-                            </div>
-                            <p class="card-content">
-                                {{ project.summary }}
-                            </p>
-                            {% if project.site_link %}
-                                <a href="{{ project.site_link }}" class="visit-btn">Visit</a>
-                            {% endif %}
-                            {% if project.github_link %}
-                                <a href="{{ project.github_link }}" class="github-btn">GitHub</a>
-                            {% endif %}
-                        </figcaption>
-                        <span class="after"></span>
-                    </figure>
-                </li>
-            {% endfor %}
-        </ul>
-    </article>
+<article class="card-content">
+    <ul class="cards">
+        {% for project in projects %}
+        <li class="card">
+            <figure class="shape-box shape-box_half">
+                <img
+                        src="/static/{{ project.cover }}"
+                        alt=""
+                />
+                <div class="brk-abs-overlay z-index-0 bg-black opacity-60"></div>
+                <figcaption>
+                    <div class="show-cont">
+                        <h3 class="card-no">{{ forloop.counter }}</h3>
+                        <h4 class="card-title">{{ project.name }}</h4>
+                    </div>
+                    <p class="card-content">
+                        {{ project.summary }}
+                    </p>
+                    {% if project.site_link %}
+                        <a href="{{ project.site_link }}" class="visit-btn">Visit</a>
+                    {% endif %}
+                    {% if project.github_link %}
+                        <a href="{{ project.github_link }}" class="github-btn">GitHub</a>
+                    {% endif %}
+                </figcaption>
+                <span class="after"></span>
+            </figure>
+        </li>
+        {% endfor %}
+    </ul>
+</article>
 {% endblock %}

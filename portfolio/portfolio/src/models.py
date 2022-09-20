@@ -97,6 +97,7 @@ class Project(models.Model):
     NAME_MAX_LEN = 40
     SUMMARY_MAX_LEN = 200
     IMG_FILE_UPLOAD_DIR = 'imgs/project_img'
+    DEFAULT_COVER_IMG_DIR = 'imgs/default-cover-bg.png'
     MAX_FILE_SIZE_IN_MB = 5
 
     name = models.CharField(
@@ -123,6 +124,7 @@ class Project(models.Model):
 
     cover = models.ImageField(
         upload_to=IMG_FILE_UPLOAD_DIR,
+        default=DEFAULT_COVER_IMG_DIR,
         null=True,
         blank=True,
         validators=[
