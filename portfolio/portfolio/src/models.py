@@ -92,3 +92,38 @@ class Certificate(models.Model):
         null=True
     )
 
+
+class Project(models.Model):
+    NAME_MAX_LEN = 40
+    IMG_FILE_UPLOAD_DIR = 'imgs/project_img'
+    MAX_FILE_SIZE_IN_MB = 5
+
+    name = models.CharField(
+        max_length=NAME_MAX_LEN,
+        blank=False,
+        null=False
+    )
+
+    summary = models.TextField(
+        blank=False,
+        null=False
+    )
+
+    site_link = models.URLField(
+        blank=True,
+        null=True
+    )
+
+    github_link = models.URLField(
+        blank=True,
+        null=True
+    )
+
+    cover = models.ImageField(
+        upload_to=IMG_FILE_UPLOAD_DIR,
+        null=True,
+        blank=True,
+        validators=[
+            MaxFileSizeInMbValidator(MAX_FILE_SIZE_IN_MB)
+        ]
+    )
