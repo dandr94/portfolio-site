@@ -95,6 +95,7 @@ class Certificate(models.Model):
 
 class Project(models.Model):
     NAME_MAX_LEN = 40
+    SUMMARY_MAX_LEN = 200
     IMG_FILE_UPLOAD_DIR = 'imgs/project_img'
     MAX_FILE_SIZE_IN_MB = 5
 
@@ -104,7 +105,8 @@ class Project(models.Model):
         null=False
     )
 
-    summary = models.TextField(
+    summary = models.CharField(
+        max_length=SUMMARY_MAX_LEN,
         blank=False,
         null=False
     )
