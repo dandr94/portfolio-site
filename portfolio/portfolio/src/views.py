@@ -51,8 +51,3 @@ class ShowProjects(ListView):
         queryset = Project.objects.all()
         return queryset
 
-
-    def get_context_data(self, *, object_list=None, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['counter'] = 0
-        return context
