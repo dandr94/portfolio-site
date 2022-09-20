@@ -6,7 +6,7 @@
         {% if about %}
             <article class="about-me-img">
                 {% if about.img %}
-                    <img src="/static/{{ about.img }}" alt="profile-picture"/>
+                    <img src="{% static about.img %}" alt="profile-picture"/>
                 {% else %}
                     <img src="{% static 'imgs/default-user-img.png' %}" alt="profile-picture"/>
                 {% endif %}

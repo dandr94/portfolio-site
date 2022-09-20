@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %} Projects {% endblock %}
 {% block page_content %}
 <article class="card-content">
@@ -7,7 +8,7 @@
         <li class="card">
             <figure class="shape-box shape-box_half">
                 <img
-                        src="/static/{{ project.cover }}"
+                        src="{% static project.cover %}"
                         alt=""
                 />
                 <div class="brk-abs-overlay z-index-0 bg-black opacity-60"></div>
