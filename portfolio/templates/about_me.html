@@ -1,12 +1,13 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load cloudinary %}
 {% block title %} About me {% endblock %}
 {% block page_content %}
     <article class="about-me">
         {% if about %}
             <article class="about-me-img">
                 {% if about.img %}
-                    <img src="{% static about.img %}" alt="profile-picture"/>
+                    <img src="{{ about.img.url }}" alt="profile-picture"/>
                 {% else %}
                     <img src="{% static 'imgs/default-user-img.png' %}" alt="profile-picture"/>
                 {% endif %}
