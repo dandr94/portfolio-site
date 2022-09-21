@@ -1,5 +1,5 @@
 from django.db import models
-
+from cloudinary import models as cloudinary_models
 from portfolio.src.validators import MaxFileSizeInMbValidator
 
 
@@ -31,7 +31,6 @@ class About(models.Model):
     FIRST_NAME_MAX_LEN = 60
     JOB_MAX_LEN = 40
     MAX_FILE_SIZE_IN_MB = 5
-    IMG_FILE_UPLOAD_DIR = 'imgs/profile_img'
     HOBBIES_MAX_LEN = 100
     LIKES_MAX_LEN = 100
 
@@ -47,13 +46,10 @@ class About(models.Model):
         blank=False
     )
 
-    img = models.ImageField(
-        upload_to=IMG_FILE_UPLOAD_DIR,
+    img = cloudinary_models.CloudinaryField(
+        'image',
         null=True,
         blank=True,
-        validators=[
-            MaxFileSizeInMbValidator(MAX_FILE_SIZE_IN_MB)
-        ]
     )
 
     summary = models.TextField(
@@ -96,7 +92,6 @@ class Certificate(models.Model):
 class Project(models.Model):
     NAME_MAX_LEN = 40
     SUMMARY_MAX_LEN = 200
-    IMG_FILE_UPLOAD_DIR = 'imgs/project_img'
     DEFAULT_COVER_IMG_DIR = 'imgs/default-cover-bg.png'
     MAX_FILE_SIZE_IN_MB = 5
 
@@ -122,12 +117,8 @@ class Project(models.Model):
         null=True
     )
 
-    cover = models.ImageField(
-        upload_to=IMG_FILE_UPLOAD_DIR,
+    cover = cloudinary_models.CloudinaryField(
         default=DEFAULT_COVER_IMG_DIR,
         null=True,
         blank=True,
-        validators=[
-            MaxFileSizeInMbValidator(MAX_FILE_SIZE_IN_MB)
-        ]
     )
