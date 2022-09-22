@@ -3,8 +3,8 @@ import datetime
 from django.test import TestCase
 from django.urls import reverse
 
-from portfolio.src.models import About, Contact, Certificate
-from portfolio.src.views import ShowContacts, CertificateDetails
+from portfolio.src.models import About, Contact, Certificate, Project
+from portfolio.src.views import ShowContacts, CertificateDetails, ShowProjects
 
 
 class AboutMeViewTests(TestCase):
@@ -88,3 +88,27 @@ class CertificateDetailsViewTests(TestCase):
         qs = view.get_queryset()
 
         self.assertQuerysetEqual(qs, Certificate.objects.all())
+
+
+class ShowProjectsViewTests(TestCase):
+    VALID_SHOWPROJECTS_CREDENTIALS = {
+        'name': 'TestingProject',
+        'summary': 'Testing small stuff',
+        'cover': 'https://res.cloudinary.com/dpdcgsg6l/image/upload/v1663857725/default-cover-bg_x7gl5j.png'
+    }
+
+    def test_expect_correct_template(self):
+        response = self.client.get(reverse('projects'))
+        self.assertTemplateUsed('projects.html')
+
+    def test_context_with_credentials(self):
+        projects = Project.objects.create(**self.VALID_SHOWPROJECTS_CREDENTIALS)
+        projects.save()
+        response = self.client.get(reverse('projects'))
+        view = ShowProjects()
+        view.response = response
+
+        qs = view.get_queryset()
+        print(qs)
+
+        self.assertQuerysetEqual(qs, Project.objects.all())
