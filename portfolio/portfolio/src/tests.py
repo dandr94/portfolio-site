@@ -36,3 +36,8 @@ class AboutMeViewTests(TestCase):
         self.assertEqual(False, about_context)
 
 
+class HomeViewTests(TestCase):
+
+    def test_expect_correct_template(self):
+        response = self.client.get(reverse('index'))
+        self.assertTemplateUsed('index.html')
