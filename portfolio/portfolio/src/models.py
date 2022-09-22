@@ -92,7 +92,7 @@ class Certificate(models.Model):
 class Project(models.Model):
     NAME_MAX_LEN = 40
     SUMMARY_MAX_LEN = 200
-    DEFAULT_COVER_IMG_DIR = 'imgs/default-cover-bg.png'
+    DEFAULT_COVER_IMG_URL = 'https://res.cloudinary.com/dpdcgsg6l/image/upload/v1663857725/default-cover-bg_x7gl5j.png'
     MAX_FILE_SIZE_IN_MB = 5
 
     name = models.CharField(
@@ -118,7 +118,7 @@ class Project(models.Model):
     )
 
     cover = cloudinary_models.CloudinaryField(
-        default=DEFAULT_COVER_IMG_DIR,
+        default=DEFAULT_COVER_IMG_URL,
         null=True,
         blank=True,
     )
