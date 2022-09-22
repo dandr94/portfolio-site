@@ -1,6 +1,7 @@
 from django.core.exceptions import ObjectDoesNotExist
 from django.views.generic import TemplateView, ListView, DetailView
 
+from portfolio.src.helpers import return_obj
 from portfolio.src.models import Contact, About, Certificate, Project
 
 
@@ -24,11 +25,7 @@ class AboutDetails(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        try:
-            context['about'] = About.objects.get()
-        except ObjectDoesNotExist:
-            context['about'] = False
-
+        context['about'] = return_obj(About)
         return context
 
 
