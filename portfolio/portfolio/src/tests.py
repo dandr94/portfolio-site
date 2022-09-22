@@ -1,7 +1,8 @@
 from django.test import TestCase
 from django.urls import reverse
 
-from portfolio.src.models import About
+from portfolio.src.models import About, Contact
+from portfolio.src.views import ShowContacts
 
 
 class AboutMeViewTests(TestCase):
@@ -41,3 +42,25 @@ class HomeViewTests(TestCase):
     def test_expect_correct_template(self):
         response = self.client.get(reverse('index'))
         self.assertTemplateUsed('index.html')
+
+
+class ShowContactsViewTests(TestCase):
+    VALID_CONTACT_CREDENTIALS = {
+        'name': 'Discord',
+        'value': 'testtestov#0904'
+    }
+
+    def test_expect_correct_template(self):
+        response = self.client.get(reverse('contacts'))
+        self.assertTemplateUsed('contacts.html')
+
+    def test_context_with_credentials(self):
+        contacts = Contact.objects.create(**self.VALID_CONTACT_CREDENTIALS)
+        contacts.save()
+        response = self.client.get(reverse('contacts'))
+        view = ShowContacts()
+        view.response = response
+
+        qs = view.get_queryset()
+
+        self.assertQuerysetEqual(qs, Contact.objects.all())
