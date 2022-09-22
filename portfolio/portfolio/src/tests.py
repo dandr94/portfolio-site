@@ -1,8 +1,10 @@
+import datetime
+
 from django.test import TestCase
 from django.urls import reverse
 
-from portfolio.src.models import About, Contact
-from portfolio.src.views import ShowContacts
+from portfolio.src.models import About, Contact, Certificate
+from portfolio.src.views import ShowContacts, CertificateDetails
 
 
 class AboutMeViewTests(TestCase):
@@ -64,3 +66,25 @@ class ShowContactsViewTests(TestCase):
         qs = view.get_queryset()
 
         self.assertQuerysetEqual(qs, Contact.objects.all())
+
+
+class CertificateDetailsViewTests(TestCase):
+    VALID_CERTIFICATE_CREDENTIALS = {
+        'name': 'Python Basics',
+        'date': datetime.date(2020, 5, 13),
+    }
+
+    def test_expect_correct_template(self):
+        response = self.client.get(reverse('certificates'))
+        self.assertTemplateUsed('certificates.html')
+
+    def test_context_with_credentials(self):
+        certificates = Certificate.objects.create(**self.VALID_CERTIFICATE_CREDENTIALS)
+        certificates.save()
+        response = self.client.get(reverse('certificates'))
+        view = CertificateDetails()
+        view.response = response
+
+        qs = view.get_queryset()
+
+        self.assertQuerysetEqual(qs, Certificate.objects.all())
