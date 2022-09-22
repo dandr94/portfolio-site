@@ -5,7 +5,7 @@ import cloudinary
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = os.getenv('SECRET_KEY')
+SECRET_KEY = os.getenv('SECRET_KEY', '347gbhbwdbGAWG789**#^gg$B$QW#h')
 
 DEBUG = os.getenv('DEBUG')
 
