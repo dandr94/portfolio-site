@@ -98,7 +98,7 @@ MEDIA_ROOT = BASE_DIR / 'static'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 cloudinary.config(
-    cloud_name=os.getenv('CLOUDINARY_CLOUD_NAME', None),
-    api_key=os.getenv('CLOUDINARY_API_KEY', None),
-    api_secret=os.getenv('CLOUDINARY_API_SECRET', None)
+    cloud_name=os.getenv('CLOUDINARY_CLOUD_NAME', 'test_cloud'),
+    api_key=os.getenv('CLOUDINARY_API_KEY', 'test_api_key'),
+    api_secret=os.getenv('CLOUDINARY_API_SECRET', 'test_secret')
 )
