@@ -1,0 +1,71 @@
+@media screen and (min-width: 320px) and (max-width: 1024px) {
+    body {
+        margin: 20px;
+    }
+
+    .header-content {
+        display: block;
+    }
+
+    .header-logo-title {
+        margin: auto;
+    }
+
+    .header-nav-items {
+        flex-direction: column;
+    }
+
+    .header-nav-item {
+        margin: auto;
+        font-size: 25px;
+    }
+
+    /* About me section */
+    .about-me {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .about-me-img {
+        width: 40%;
+    }
+
+    .about-me-content-title {
+        font-size: 25px;
+        margin-top: 10px;
+    }
+
+    .about-me-content-text {
+        width: 60%;
+        margin: auto;
+    }
+
+    .about-me-hobbies {
+        margin-top: 10px;
+        font-size: 15px;
+    }
+
+    /* Contacts section */
+    .contacts-items {
+        width: 80%;
+    }
+
+    .contacts-item-p {
+        font-size: 15px;
+    }
+
+
+    /* Projects section */
+    .cards {
+        flex-direction: column;
+
+    }
+
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1920px) {
+    body {
+        margin: 55px;
+    }
+}
+
