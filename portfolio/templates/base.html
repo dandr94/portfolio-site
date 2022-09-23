@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="{% static '/css/style.css' %}" />
+    <link rel="stylesheet" href="{% static '/css/responsive.css' %}">
     <title>{% block title %} {% endblock %}</title>
   </head>
   <body class="body-content">
@@ -20,11 +21,18 @@
         <ul class="header-nav-items">
           <li class="header-nav-item">
             <a href="{% url 'projects' %}">Projects</a>
-            <a href="{% url 'certificates' %}">Certificates</a>
-            <a href="{% url 'about' %}">About me</a>
-            <a href="{% url 'contacts' %}">Contacts</a>
-              <button id="switch" onclick="toggleTheme()"></button>
           </li>
+          <li class="header-nav-item">
+            <a href="{% url 'certificates' %}">Certificates</a>
+          </li>
+          <li class="header-nav-item">
+            <a href="{% url 'about' %}">About me</a>
+          </li>
+          <li class="header-nav-item">
+            <a href="{% url 'contacts' %}">Contacts</a>
+          <li class="header-nav-item">
+            <button id="switch" onclick="toggleTheme()"></button>
+           </li>
         </ul>
       </nav>
     </header>
@@ -33,11 +41,12 @@
 
         {% endblock %}
     </main>
-   <footer class="footer-content">
+    <footer class="footer-content">
       <ul class="footer-items">
         <li class="footer-item">
           <p class="footer-item-text">
-            &copy; dandr94 | You can check site's GitHub <a href="https://github.com/dandr94/portfolio-site">HERE</a>
+            &copy; dandr94 | You can check site's GitHub
+            <a href="https://github.com/dandr94/portfolio-site">HERE</a>
           </p>
         </li>
       </ul>
