@@ -4,16 +4,33 @@
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css");
 
 :root {
-    ---text-color: #e1dee1;
-    ---title-color: #40d396;
-    ---bg-color: #1a1a1a;
     ---dark-color: rgba(0, 0, 0, 0.2);
     ---section-padding: 100px 0px 40px 0px;
     ---border-color: #363636;
     ---text-margin-bottom: 15px;
     ---card-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
     ---polygon: polygon(0 0, 100% 0, 100% 100%, 0 90%);
+
 }
+
+/* Themes */
+.light-theme {
+    ---text-color: black;
+    ---title-color: #40d396;
+    ---bg-color: #ffff;
+    ---bg-switch-btn: #1a1a1a;
+    ---text-color-switch-btn: #e1dee1;
+}
+
+.dark-theme {
+    ---text-color: #e1dee1;
+    ---title-color: #40d396;
+    ---bg-color: #1a1a1a;
+    ---bg-switch-btn: #ffff;
+    ---text-color-switch-btn: #black;
+
+}
+
 
 html {
     background: var(---bg-color);
@@ -85,6 +102,20 @@ body {
 .header-nav-item a:hover {
     background: var(---title-color);
     padding: 15px;
+}
+
+#switch {
+    color: var(---text-color);
+    padding: 5px 10px;
+    background: transparent;
+    cursor: pointer;
+    border: 1px solid var(---border-color);
+    border-radius: 15px;
+}
+
+#switch:hover {
+    background: var(---bg-switch-btn);
+    color: var(---text-color-switch-btn);
 }
 
 /* Index intro content */
