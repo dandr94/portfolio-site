@@ -2,6 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 @import url("https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css");
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css");
+@import url('responsive.css');
 
 :root {
     ---dark-color: rgba(0, 0, 0, 0.2);
@@ -48,7 +49,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0px 70px 10px;
+    padding: 0 70px 10px;
 }
 
 .header-logo {
@@ -96,7 +97,7 @@ body {
 }
 
 .header-nav-item a:last-child {
-    margin-right: 0px;
+    margin-right: 0;
 }
 
 .header-nav-item a:hover {
@@ -127,7 +128,7 @@ body {
 
 .intro-title {
     color: var(---title-color);
-    padding: 50px 0px;
+    padding: 50px 0;
     font-size: 60px;
 }
 
@@ -283,7 +284,7 @@ body {
 }
 
 
-/* Cetificates content ver.1 */
+/* Certificates content ver.1 */
 
 .certificates {
     padding: var(---section-padding);
@@ -325,7 +326,7 @@ body {
 }
 
 .content {
-    margin: 15px 0px 15px 0px;
+    margin: 15px 0 15px 0;
     display: none;
     background-color: transparent;
 }
@@ -343,7 +344,7 @@ body {
 
 .about-me-img {
     min-width: 220px;
-    margin: 0px 30px;
+    margin: 0 30px;
 }
 
 .about-me-img img {
@@ -419,6 +420,12 @@ body {
     transition: 0.5s;
     margin-top: 40px;
     letter-spacing: 4px;
+}
+
+.contacts-item-p {
+    font-size: 25px;
+    margin-top: 15px;
+
 }
 
 .contacts-item:hover {
@@ -512,7 +519,7 @@ body {
 /* Footer content */
 
 .footer-content {
-    padding: 100px 0px 10px 0px;
+    padding: 100px 0 10px 0;
 }
 
 .footer-items {
@@ -531,4 +538,6 @@ body {
 .footer-item a:hover {
     text-decoration: underline;
 }
+
+
 
