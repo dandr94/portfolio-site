@@ -7,6 +7,28 @@ from portfolio.src.models import About, Contact, Certificate, Project
 from portfolio.src.views import ShowContacts, CertificateDetails, ShowProjects
 
 
+def get_context_with_credentials(self, credentials, model, template):
+    model_name = model.objects.create(**credentials)
+    model_name.save()
+
+    response = self.client.get(reverse(template))
+    model_name_context = response.context[template]
+
+    return model_name_context
+
+
+def get_queryset_context_with_credentials(self, credentials, model, template, view):
+    model_name = model.objects.create(**credentials)
+    model_name.save()
+    response = self.client.get(reverse(template))
+    view_name = view()
+    view_name.response = response
+
+    qs = view_name.get_queryset()
+
+    return qs
+
+
 class AboutMeViewTests(TestCase):
     VALID_ABOUT_ME_CREDENTIALS = {
         'full_name': 'Test Testov',
@@ -14,16 +36,15 @@ class AboutMeViewTests(TestCase):
         'summary': 'I am testing stuff'
     }
 
+    MODEL = About
+    TEMPLATE = 'about'
+
     def test_expect_correct_template(self):
         response = self.client.get(reverse('about'))
         self.assertTemplateUsed('about_me.html')
 
     def test_context_with_valid_credentials(self):
-        about = About.objects.create(**self.VALID_ABOUT_ME_CREDENTIALS)
-        about.save()
-
-        response = self.client.get(reverse('about'))
-        about_context = response.context['about']
+        about_context = get_context_with_credentials(self, self.VALID_ABOUT_ME_CREDENTIALS, self.MODEL, self.TEMPLATE)
 
         self.assertEqual('Test Testov', about_context.full_name)
         self.assertEqual('Testing stuff', about_context.job)
@@ -52,18 +73,17 @@ class ShowContactsViewTests(TestCase):
         'value': 'testtestov#0904'
     }
 
+    MODEL = Contact
+    TEMPLATE = 'contacts'
+    VIEW = ShowContacts
+
     def test_expect_correct_template(self):
         response = self.client.get(reverse('contacts'))
         self.assertTemplateUsed('contacts.html')
 
     def test_context_with_credentials(self):
-        contacts = Contact.objects.create(**self.VALID_CONTACT_CREDENTIALS)
-        contacts.save()
-        response = self.client.get(reverse('contacts'))
-        view = ShowContacts()
-        view.response = response
-
-        qs = view.get_queryset()
+        qs = get_queryset_context_with_credentials(self, self.VALID_CONTACT_CREDENTIALS, self.MODEL, self.TEMPLATE,
+                                                   self.VIEW)
 
         self.assertQuerysetEqual(qs, Contact.objects.all())
 
@@ -74,18 +94,17 @@ class CertificateDetailsViewTests(TestCase):
         'date': datetime.date(2020, 5, 13),
     }
 
+    MODEL = Certificate
+    TEMPLATE = 'certificates'
+    VIEW = CertificateDetails
+
     def test_expect_correct_template(self):
         response = self.client.get(reverse('certificates'))
         self.assertTemplateUsed('certificates.html')
 
     def test_context_with_credentials(self):
-        certificates = Certificate.objects.create(**self.VALID_CERTIFICATE_CREDENTIALS)
-        certificates.save()
-        response = self.client.get(reverse('certificates'))
-        view = CertificateDetails()
-        view.response = response
-
-        qs = view.get_queryset()
+        qs = get_queryset_context_with_credentials(self, self.VALID_CERTIFICATE_CREDENTIALS, self.MODEL, self.TEMPLATE,
+                                                   self.VIEW)
 
         self.assertQuerysetEqual(qs, Certificate.objects.all())
 
@@ -97,18 +116,16 @@ class ShowProjectsViewTests(TestCase):
         'cover': 'https://res.cloudinary.com/dpdcgsg6l/image/upload/v1663857725/default-cover-bg_x7gl5j.png'
     }
 
+    MODEL = Project
+    TEMPLATE = 'projects'
+    VIEW = ShowProjects
+
     def test_expect_correct_template(self):
         response = self.client.get(reverse('projects'))
         self.assertTemplateUsed('projects.html')
 
     def test_context_with_credentials(self):
-        projects = Project.objects.create(**self.VALID_SHOWPROJECTS_CREDENTIALS)
-        projects.save()
-        response = self.client.get(reverse('projects'))
-        view = ShowProjects()
-        view.response = response
-
-        qs = view.get_queryset()
-        print(qs)
+        qs = get_queryset_context_with_credentials(self, self.VALID_SHOWPROJECTS_CREDENTIALS, self.MODEL, self.TEMPLATE,
+                                                   self.VIEW)
 
         self.assertQuerysetEqual(qs, Project.objects.all())
