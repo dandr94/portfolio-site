@@ -35,7 +35,7 @@ class CertificateDetails(ListView):
     context_object_name = 'certificates'
 
     def get_queryset(self):
-        queryset = Certificate.objects.all()
+        queryset = Certificate.objects.all().order_by('date')
         return queryset
 
 
