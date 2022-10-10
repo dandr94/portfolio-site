@@ -2,6 +2,7 @@ import os
 from pathlib import Path
 
 import cloudinary
+import dj_database_url
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -59,22 +60,12 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'portfolio.wsgi.application'
-DATABASES = None
-if os.getenv('APP_ENVIRONMENT') == 'Development':
-    DATABASES = {
-        'default': {
-            'ENGINE': os.getenv('DB_ENGINE', 'django.db.backends.postgresql'),
-            'NAME': os.getenv('DB_NAME', 'portfolio_db'),
-            'USER': os.getenv('DB_USER', 'postgres'),
-            'PASSWORD': os.getenv('DB_PASSWORD', '1123QwER'),
-            'HOST': os.getenv('DB_HOST', '127.0.0.1'),
-            'PORT': os.getenv('DB_PORT', '5432'),
-        }
-    }
-else:
-    DATABASES = {
-        'default': os.getenv('DATABASE_URL')
-    }
+
+DATABASES = {
+    'default': os.getenv('DATABASE_URL')
+}
+
+DATABASES['default'] = dj_database_url.config(conn_max_age=int(os.getenv('CONN_MAX_AGE')), default=60)
 
 AUTH_PASSWORD_VALIDATORS = [
     {
