@@ -1,6 +1,5 @@
-from django.core.exceptions import ObjectDoesNotExist
 from django.views.generic import TemplateView, ListView, DetailView
-
+from django.db.models.functions import Length
 from portfolio.src.helpers import return_obj
 from portfolio.src.models import Contact, About, Certificate, Project
 
@@ -15,7 +14,7 @@ class ShowContacts(ListView):
     context_object_name = 'contacts'
 
     def get_queryset(self):
-        queryset = Contact.objects.all()
+        queryset = Contact.objects.all().order_by(Length('value'))
         return queryset
 
 
