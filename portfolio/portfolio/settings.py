@@ -61,11 +61,23 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'portfolio.wsgi.application'
 
-DATABASES = {
-    'default': os.getenv('DATABASE_URL')
-}
+DATABASES = None
 
-DATABASES['default'] = dj_database_url.config(conn_max_age=int(os.getenv('CONN_MAX_AGE')), default=60)
+if os.getenv('APP_ENVIRONMENT') != 'Development':
+    DATABASES = {
+        'default': {
+            'ENGINE': os.getenv('DB_ENGINE'),
+            'NAME': os.getenv('DB_NAME'),
+            'USER': os.getenv('DB_USER'),
+            'PASSWORD': os.getenv('DB_PASSWORD'),
+            'HOST': os.getenv('DB_HOST'),
+            'PORT': os.getenv('DB_PORT'),
+        }
+    }
+else:
+    DATABASES = {
+        'default': dj_database_url.config(conn_max_age=600)
+    }
 
 AUTH_PASSWORD_VALIDATORS = [
     {
