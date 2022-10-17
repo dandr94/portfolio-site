@@ -30,18 +30,6 @@ function toggleTheme() {
     }
 }
 
-(function () {
-    if (localStorage.getItem('theme') === 'dark-theme') {
-        setTheme('dark-theme');
-        btnText.textContent = 'Light'
-
-    } else {
-        setTheme('light-theme');
-        btnText.textContent = 'Dark'
-
-    }
-})();
-
 
 
 
