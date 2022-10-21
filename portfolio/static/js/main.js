@@ -13,7 +13,20 @@ for (let i = 0; i < coll.length; i++) {
 }
 
 let btnText = document.getElementById('switch')
+const theme = localStorage.getItem('theme')
 
+if (theme) {
+    setTheme(theme)
+    btnText.textContent = returnBtnText(theme)
+} else {
+    setTheme('dark-theme')
+    btnText.textContent = 'Light'
+}
+
+function returnBtnText(themeName) {
+    return themeName === 'dark-theme' ? 'Light' : 'Dark'
+
+}
 
 function setTheme(themeName) {
     localStorage.setItem('theme', themeName);
