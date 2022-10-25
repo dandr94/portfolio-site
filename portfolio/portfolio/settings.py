@@ -6,11 +6,11 @@ import dj_database_url
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = os.getenv('SECRET_KEY', '347gbhbwdbGAWG789**#^gg$B$QW#h')
+SECRET_KEY = os.getenv('SECRET_KEY')
 
-DEBUG = os.getenv('DEBUG')
+DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(' ')
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(' ')
 
 DJANGO_APPS = [
     'django.contrib.admin',
@@ -62,9 +62,11 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'portfolio.wsgi.application'
 
-DATABASES = None
+DATABASES = {}
 
 if os.getenv('APP_ENVIRONMENT') != 'Development':
+    DATABASES['default'] = dj_database_url.config(conn_max_age=int(os.getenv('CONN_MAX_AGE')))
+else:
     DATABASES = {
         'default': {
             'ENGINE': os.getenv('DB_ENGINE'),
@@ -74,10 +76,6 @@ if os.getenv('APP_ENVIRONMENT') != 'Development':
             'HOST': os.getenv('DB_HOST'),
             'PORT': os.getenv('DB_PORT'),
         }
-    }
-else:
-    DATABASES = {
-        'default': dj_database_url.config(conn_max_age=600)
     }
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -103,7 +101,6 @@ USE_I18N = True
 
 USE_TZ = True
 
-
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATIC_URL = 'static/'
@@ -113,11 +110,12 @@ STATICFILES_DIRS = (
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
 
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+CSRF_TRUSTED_ORIGINS = os.getenv('CSRF_TRUSTED_DOMAINS').split(' ')
+
 cloudinary.config(
-    cloud_name=os.getenv('CLOUDINARY_CLOUD_NAME', 'test_cloud'),
-    api_key=os.getenv('CLOUDINARY_API_KEY', 'test_api_key'),
-    api_secret=os.getenv('CLOUDINARY_API_SECRET', 'test_secret')
+    cloud_name=os.getenv('CLOUDINARY_CLOUD_NAME'),
+    api_key=os.getenv('CLOUDINARY_API_KEY'),
+    api_secret=os.getenv('CLOUDINARY_API_SECRET')
 )
