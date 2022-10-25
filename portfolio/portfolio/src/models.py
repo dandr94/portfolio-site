@@ -1,6 +1,5 @@
 from django.db import models
 from cloudinary import models as cloudinary_models
-from portfolio.src.validators import MaxFileSizeInMbValidator
 
 
 class Contact(models.Model):
