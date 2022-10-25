@@ -3,6 +3,8 @@
         margin: 20px;
     }
 
+    /* Header content */
+
     .header-content {
         display: block;
     }
@@ -16,8 +18,20 @@
     }
 
     .header-nav-item {
-        margin: auto;
         font-size: 25px;
+        text-align: center;
+
+    }
+
+    .header-nav-item a:hover {
+        padding: 0;
+    }
+
+    /* Intro section */
+
+    .intro-title {
+        padding: 0 5px 30px;
+        font-size: 45px;
     }
 
     /* About me section */
@@ -36,7 +50,7 @@
     }
 
     .about-me-content-text {
-        width: 60%;
+        width: 90%;
         margin: auto;
     }
 
